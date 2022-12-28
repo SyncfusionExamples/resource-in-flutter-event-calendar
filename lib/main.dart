@@ -3,23 +3,25 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
-void main() => runApp(ResourceView());
+void main() => runApp(const ResourceView());
 
 class ResourceView extends StatefulWidget {
+  const ResourceView({super.key});
+
   @override
   ResourceViewState createState() => ResourceViewState();
 }
 
 class ResourceViewState extends State<ResourceView> {
-  List<CalendarView> _allowedViews;
-  List<String> _subjectCollection;
-  List<Color> _colorCollection;
-  List<Appointment> _shiftCollection;
-  List<CalendarResource> _employeeCollection;
-  List<TimeRegion> _specialTimeRegions;
-  List<String> _nameCollection;
-  List<String> _userImages;
-  _DataSource _events;
+  late List<CalendarView> _allowedViews;
+  late List<String> _subjectCollection;
+  late List<Color> _colorCollection;
+  late List<Appointment> _shiftCollection;
+  late List<CalendarResource> _employeeCollection;
+  late List<TimeRegion> _specialTimeRegions;
+  late List<String> _nameCollection;
+  late List<String> _userImages;
+  late _DataSource _events;
 
   @override
   void initState() {
@@ -169,11 +171,11 @@ class ResourceViewState extends State<ResourceView> {
     _shiftCollection = <Appointment>[];
     final Random random = Random();
     for (int i = 0; i < _employeeCollection.length; i++) {
-      final List<String> _employeeIds = <String>[_employeeCollection[i].id];
+      final List<String> _employeeIds = <String>[_employeeCollection[i].id.toString()];
       if (i == _employeeCollection.length - 1) {
         int index = random.nextInt(5);
         index = index == i ? index + 1 : index;
-        _employeeIds.add(_employeeCollection[index].id);
+        _employeeIds.add(_employeeCollection[index].id.toString());
       }
 
       for (int k = 0; k < 365; k++) {
